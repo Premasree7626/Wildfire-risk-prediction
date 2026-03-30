@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingClassifier
+from xgboost import XGBClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
+
+# Load dataset
+data_path = '/content/gds_fire_30mm.csv.zip'
+df = pd.read_csv(data_path)
+
+# Drop non-numeric columns
+df.drop(columns=[col for col in ['system:index', '.geo', 'labels'] if col in df.columns], inplace=True)
+
+# Convert categorical data to numeric
+df = df.apply(pd.to_numeric, errors='coerce')
+
+# Handle missing values
+df.fillna(df.mean(), inplace=True)
+
+# Define features and target
+X = df.drop(columns=['risk']) if 'risk' in df.columns else df.iloc[:, :-1]
+y = df['risk'] if 'risk' in df.columns else df.iloc[:, -1]
+
+# Convert y to categorical if needed
+if not np.issubdtype(y.dtype, np.integer):
+    le = LabelEncoder()
+    y = le.fit_transform(y)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train XGBoost model
+xgb_model = XGBClassifier()
+xgb_model.fit(X_train, y_train)
+y_pred_xgb = xgb_model.predict(X_test)
+xgb_accuracy = accuracy_score(y_test, y_pred_xgb)
+
+# Train Gradient Boosting model
+gb_model = GradientBoostingClassifier()
+gb_model.fit(X_train, y_train)
+y_pred_gb = gb_model.predict(X_test)
+gb_accuracy = accuracy_score(y_test, y_pred_gb)
+
+# Print accuracies
+print("XGBoost Accuracy:", xgb_accuracy)
+print("Gradient Boosting Accuracy:", gb_accuracy)
