@@ -30,4 +30,4 @@ LGBM outperformed XGBoost in terms of accuracy and real-time prediction capabili
 - Integrate real-time data sources  
 
 ## 🔗 Project Link
-[View Code](https://github.com/Premasree7626/Wildfire-risk-prediction/blob/main/your_notebook.ipynb)
+[View Code][(https://github.com/Premasree7626/Wildfire-risk-prediction/blob/main/your_notebook.ipynb)](https://github.com/Premasree7626/Wildfire-risk-prediction/blob/main/project-2025%5B1%5D.docx)
