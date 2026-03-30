@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+
+# Accuracy results
+models = ['XGBoost', 'Gradient Boosting']
+accuracies = [xgb_accuracy, gb_accuracy]
+
+# Plot bar chart
+plt.figure(figsize=(6, 4))
+plt.bar(models, accuracies, color=['blue', 'green'])
+plt.xlabel("Model")
+plt.ylabel("Accuracy")
+plt.title("Comparison of XGBoost and Gradient Boosting")
+plt.ylim(0, 1)  # Accuracy ranges between 0 and 1
+
+# Show accuracy values on top of bars
+for i, acc in enumerate(accuracies):
+    plt.text(i, acc + 0.02, f"{acc:.2f}", ha='center', fontsize=12, fontweight='bold')
+
+plt.show()
