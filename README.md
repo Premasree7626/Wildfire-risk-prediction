@@ -20,7 +20,7 @@ This project focuses on predicting wildfire risk using machine learning models b
 ## 📊 Results
 - ✅ LGBM Accuracy: 91.15%  
 - ✅ XGBoost Accuracy: 87.89%
-      output.png
+      [output.png](https://raw.githubusercontent.com/Premasree7626/Wildfire-risk-prediction/refs/heads/main/output.png)
   
 ## 💡 Conclusion
 LGBM outperformed XGBoost in terms of accuracy and real-time prediction capability. The model can effectively identify high-risk wildfire zones, helping in early warning and disaster management.
